@@ -31,7 +31,7 @@ function GeoChart({ data, property }) {
 
     // projects geo-coordinates on a 2D plane
     const projection = geoMercator()
-      .fitSize([width, height], selectedCountry || data)
+      .fitSize([width + 10, height + 10], selectedCountry || data)
       .precision(100);
 
     // takes geojson data,
@@ -48,7 +48,6 @@ function GeoChart({ data, property }) {
         setSelectedCountry(selectedCountry === feature ? null : feature);
       })
       .attr("class", "country")
-
       .attr("fill", (feature) => colorScale(feature.properties[property]))
       .attr("d", (feature) => pathGenerator(feature));
 
@@ -65,12 +64,13 @@ function GeoChart({ data, property }) {
             ": " +
             feature.properties[property].toLocaleString()
       )
+      .style("fill", "white")
       .attr("x", 10)
       .attr("y", 25);
   }, [data, dimensions, property, selectedCountry]);
 
   return (
-    <div ref={wrapperRef} style={{ marginBottom: "2rem" }}>
+    <div ref={wrapperRef} style={{ marginBottom: "3rem" }}>
       <svg ref={svgRef}></svg>
     </div>
   );

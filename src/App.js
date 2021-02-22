@@ -8,11 +8,12 @@ function App() {
   const [property, setProperty] = useState("pop_est");
   return (
     <React.Fragment>
-      <Typography variant="h4" color="secondary">
+      <Typography className="Typo" variant="h4" color="secondary">
         World Map with d3-geo
       </Typography>
+      <br />
       <GeoChart data={data} property={property} />
-      <Typography variant="h3" color="textSecondary">
+      <Typography className="Typo" variant="h6" color="primary">
         Select property to highlight
       </Typography>
       <select
